@@ -37,3 +37,14 @@
 .\memorymap.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 .\memorymap.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
 .\memorymap.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
+.\memorymap.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+.\memorymap.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+.\memorymap.o: ../Core/Inc/FreeRTOSConfig.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+.\memorymap.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

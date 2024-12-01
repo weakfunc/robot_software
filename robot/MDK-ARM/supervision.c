@@ -1,11 +1,18 @@
 #include "SUPERVISION.h"
+supervisionTaskConfig_t supervisionTaskConfig;
 
-rgbCmd_t rgbCmd;
-
-void supervisionTask(){
-	rgbCmd.r ++;
-	rgbCmd.g += 5;
-	rgbCmd.b += 10;
-	WS2812_Ctrl(rgbCmd.r, rgbCmd.g, rgbCmd.b);
+void supervisionUpdataTask(){
+	supervisionTaskConfig.taskTime++;
+	
+	musicUpdata(&driverBeepConifg.state);
+	
+	if(supervisionTaskConfig.taskTime%10 == 0){
+		if(rgbCmd.ledState == 0){
+			ws2812SetColor(GREEN);
+		}else{
+			ws2812SetColor(CLEAR);
+		}
+		ws2812Updata();
+	}
 }
 

@@ -36,7 +36,8 @@
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
-.\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
+.\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+.\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 .\main.o: ../Core/Inc/FreeRTOSConfig.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
@@ -46,7 +47,10 @@
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+.\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 .\main.o: ../Core/Inc/memorymap.h
 .\main.o: ../Core/Inc/spi.h
+.\main.o: ../Core/Inc/tim.h
+.\main.o: ../Core/Inc/usart.h
 .\main.o: ../Core/Inc/gpio.h

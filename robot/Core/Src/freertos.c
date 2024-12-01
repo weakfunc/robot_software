@@ -26,7 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "SUPERVISION.h"
-
+#include "MOTOR.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,7 +60,14 @@ osThreadId_t SupervisionTaskHandle;
 const osThreadAttr_t SupervisionTask_attributes = {
   .name = "SupervisionTask",
   .stack_size = 500 * 4,
-  .priority = (osPriority_t) osPriorityHigh,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for MotorTransTask */
+osThreadId_t MotorTransTaskHandle;
+const osThreadAttr_t MotorTransTask_attributes = {
+  .name = "MotorTransTask",
+  .stack_size = 500 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -69,7 +76,8 @@ const osThreadAttr_t SupervisionTask_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
-void _supervisionTask(void *argument);
+void supervisionTask(void *argument);
+void motorTransTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -104,7 +112,10 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* creation of SupervisionTask */
-  SupervisionTaskHandle = osThreadNew(_supervisionTask, NULL, &SupervisionTask_attributes);
+  SupervisionTaskHandle = osThreadNew(supervisionTask, NULL, &SupervisionTask_attributes);
+
+  /* creation of MotorTransTask */
+  MotorTransTaskHandle = osThreadNew(motorTransTask, NULL, &MotorTransTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -129,28 +140,53 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+		if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_15) == GPIO_PIN_RESET)
+			driverBeepConifg.state = 2;
+		
+    osDelay(2);
   }
   /* USER CODE END StartDefaultTask */
 }
 
-/* USER CODE BEGIN Header__supervisionTask */
+/* USER CODE BEGIN Header_supervisionTask */
 /**
 * @brief Function implementing the SupervisionTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header__supervisionTask */
-void _supervisionTask(void *argument)
+/* USER CODE END Header_supervisionTask */
+void supervisionTask(void *argument)
 {
-  /* USER CODE BEGIN _supervisionTask */
+  /* USER CODE BEGIN supervisionTask */
+	ws2812Init();
+	beepInit();
   /* Infinite loop */
   for(;;)
   {
-		supervisionTask();
-    osDelay(200);
+		supervisionUpdataTask();
+    osDelay(100);
   }
-  /* USER CODE END _supervisionTask */
+  /* USER CODE END supervisionTask */
+}
+
+/* USER CODE BEGIN Header_motorTransTask */
+/**
+* @brief Function implementing the MotorTransTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_motorTransTask */
+void motorTransTask(void *argument)
+{
+  /* USER CODE BEGIN motorTransTask */
+	motorSendTest();
+  /* Infinite loop */
+  for(;;)
+  {
+		motorUpdataTask();
+    osDelay(1000);
+  }
+  /* USER CODE END motorTransTask */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -37,3 +37,14 @@
 .\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 .\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
 .\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
+.\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+.\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+.\gpio.o: ../Core/Inc/FreeRTOSConfig.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+.\gpio.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

@@ -31,7 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "FreeRTOS.h"
+#include "task.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -65,7 +66,10 @@ void Error_Handler(void);
 #define POWER_OUT_5V_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
-
+#define RS485_DE_GPIO_Port GPIOB
+#define RS485_DE_Pin GPIO_PIN_14
+#define RS485_RE_GPIO_Port
+#define RS485_RE_Pin
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

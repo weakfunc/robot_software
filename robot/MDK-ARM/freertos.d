@@ -45,7 +45,13 @@
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
+.\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+.\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 .\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 .\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 .\freertos.o: ../MDK-ARM/SUPERVISION.h
-.\freertos.o: ../MDK-ARM/Driver_ws2812.h
+.\freertos.o: ../MDK-ARM/DRIVER_WS2812.h
+.\freertos.o: ../MDK-ARM/DRIVER_BEEP.h
+.\freertos.o: ../Core/Inc/tim.h
+.\freertos.o: ../MDK-ARM/MOTOR.h
+.\freertos.o: ../MDK-ARM/Driver_Motor.h

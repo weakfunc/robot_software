@@ -1,5 +1,5 @@
 .\driver_ws2812.o: Driver_WS2812.c
-.\driver_ws2812.o: Driver_ws2812.h
+.\driver_ws2812.o: DRIVER_WS2812.h
 .\driver_ws2812.o: ../Core/Inc/main.h
 .\driver_ws2812.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 .\driver_ws2812.o: ../Core/Inc/stm32h7xx_hal_conf.h
@@ -37,3 +37,14 @@
 .\driver_ws2812.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 .\driver_ws2812.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
 .\driver_ws2812.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
+.\driver_ws2812.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+.\driver_ws2812.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+.\driver_ws2812.o: ../Core/Inc/FreeRTOSConfig.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+.\driver_ws2812.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
