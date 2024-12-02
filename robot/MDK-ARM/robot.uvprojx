@@ -1695,6 +1695,16 @@
               <FileType>1</FileType>
               <FilePath>.\Driver_CRC.c</FilePath>
             </File>
+            <File>
+              <FileName>Driver_DWT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver_DWT.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_DWT.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Driver_DWT.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

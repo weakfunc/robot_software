@@ -178,13 +178,12 @@ void supervisionTask(void *argument)
 void motorTransTask(void *argument)
 {
   /* USER CODE BEGIN motorTransTask */
-	motorSendTest(&motorSendConfig);
-	motorSendTest(&test);
+	motorSendTest();
   /* Infinite loop */
   for(;;)
   {
 		motorUpdataTask();
-    osDelay(5);
+    osDelay(1);
   }
   /* USER CODE END motorTransTask */
 }

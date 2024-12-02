@@ -49,6 +49,7 @@
 ".\driver_key.o"
 ".\driver_motor.o"
 ".\driver_crc.o"
+".\driver_dwt.o"
 ".\supervision.o"
 ".\system.o"
 ".\motor.o"

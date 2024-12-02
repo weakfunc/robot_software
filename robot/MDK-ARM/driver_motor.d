@@ -55,3 +55,4 @@
 .\driver_motor.o: DRIVER_BEEP.h
 .\driver_motor.o: ../Core/Inc/tim.h
 .\driver_motor.o: ../Core/Inc/dma.h
+.\driver_motor.o: DRIVER_DWT.h

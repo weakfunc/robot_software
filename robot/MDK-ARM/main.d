@@ -55,3 +55,4 @@
 .\main.o: ../Core/Inc/tim.h
 .\main.o: ../Core/Inc/usart.h
 .\main.o: ../Core/Inc/gpio.h
+.\main.o: ../MDK-ARM/DRIVER_DWT.h

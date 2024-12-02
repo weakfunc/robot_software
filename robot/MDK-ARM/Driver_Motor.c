@@ -3,9 +3,10 @@
 #include "usart.h"
 #include "SUPERVISION.h"
 #include "dma.h"
+#include "DRIVER_DWT.h"
 
-uniTreeMotorSendConfig_t motorSendConfig;   
-uniTreeMotorRevConfig_t motorRevConfig;
+uniTreeMotorSendConfig_t motorSendConfig[UNITREE_MOTOR_NUM];   
+uniTreeMotorRevConfig_t motorRevConfig[UNITREE_MOTOR_NUM];
 
 uniTreeMotorSendConfig_t test;
 driverMotorConfig_t driverMotorConfig;
@@ -13,46 +14,51 @@ driverMotorConfig_t driverMotorConfig;
 
 uint8_t rxTemp[20];
 
-void motorSendTest(uniTreeMotorSendConfig_t *data){
-	data->id = 0;
-	data->mode = 1;
-	data->t=0;
-	data->w=20;
-	data->pos=0;
-	data->kp=0;
-	data->kw=0.05;
-	HAL_UART_Receive_DMA(&huart3, rxTemp, 17);
+void motorSendTest(){
+	for(int i=0; i<UNITREE_MOTOR_NUM; i++){
+		motorSendConfig[i].id = i;
+		motorSendConfig[i].mode = 1;
+		motorSendConfig[i].t=0;
+		motorSendConfig[i].w=20;
+		motorSendConfig[i].pos=0;
+		motorSendConfig[i].kp=0;
+		motorSendConfig[i].kw=0.05;
+	}
+	HAL_UART_Receive_DMA(&huart3, rxTemp, 16);
 }
 
-static void unitreeLoadPack(uniTreeMotorSendConfig_t *pData){
-	pData->hexLen = 17;
-	
-	pData->motorSendpack.head[0] = 0xFE;
-	pData->motorSendpack.head[1] = 0xEE;
-	
-	LIMIT(pData->kp, 0.0f, 25.599f);
-	LIMIT(pData->kw, 0.0f, 25.599f);
-	LIMIT(pData->t, -127.99f, 127.99f);
-	LIMIT(pData->w, -804.00f, 804.00f);
-	LIMIT(pData->pos, -411774.0f, 411774.0f);
-	
-	pData->motorSendpack.mode.id   = pData->id;
-	pData->motorSendpack.mode.status  = pData->mode;
-	pData->motorSendpack.comd.k_pos  = pData->kp/25.6f*32768;
-	pData->motorSendpack.comd.k_spd  = pData->kw/25.6f*32768;
-	pData->motorSendpack.comd.pos_des  = pData->pos/6.2832f*32768;
-	pData->motorSendpack.comd.spd_des  = pData->w/6.2832f*256;
-	pData->motorSendpack.comd.tor_des  = pData->t*256;
-	pData->motorSendpack.CRC16 = crc_ccitt(0, (uint8_t *)&pData->motorSendpack, 15);
-}
 
+
+
+
+static void unitreeLoadPack(uniTreeMotorSendConfig_t *send_config){
+	send_config->hexLen = 17;
+	
+	send_config->motorSendpack.head[0] = 0xFE;
+	send_config->motorSendpack.head[1] = 0xEE;
+	
+	LIMIT(send_config->kp, 0.0f, 25.599f);
+	LIMIT(send_config->kw, 0.0f, 25.599f);
+	LIMIT(send_config->t, -127.99f, 127.99f);
+	LIMIT(send_config->w, -804.00f, 804.00f);
+	LIMIT(send_config->pos, -411774.0f, 411774.0f);
+	
+	send_config->motorSendpack.mode.id   = send_config->id;
+	send_config->motorSendpack.mode.status  = send_config->mode;
+	send_config->motorSendpack.comd.k_pos  = send_config->kp/25.6f*32768;
+	send_config->motorSendpack.comd.k_spd  = send_config->kw/25.6f*32768;
+	send_config->motorSendpack.comd.pos_des  = send_config->pos/6.2832f*32768;
+	send_config->motorSendpack.comd.spd_des  = send_config->w/6.2832f*256;
+	send_config->motorSendpack.comd.tor_des  = send_config->t*256;
+	send_config->motorSendpack.CRC16 = crc_ccitt(0, (uint8_t *)&send_config->motorSendpack, 15);
+}
 static void unitreeReceivePack(uniTreeMotorRevConfig_t *rData){
 	if(rData->motorRevpack.CRC16 != crc_ccitt(0, (uint8_t *)&rData->motorRevpack, 14)){
 			sysLog("Receive data CRC error", "WARNING");
 			rData->correct = 0;
 	}
 	else{
-			rData->motorId = rData->motorRevpack.mode.id;
+			rData->id = rData->motorRevpack.mode.id;
 			rData->mode = rData->motorRevpack.mode.status;
 			rData->temp = rData->motorRevpack.fbk.temp;
 			rData->errorCode = rData->motorRevpack.fbk.MError;
@@ -63,28 +69,30 @@ static void unitreeReceivePack(uniTreeMotorRevConfig_t *rData){
 			rData->correct = 1;
 	}
 }
-
-void unitreeMotorSendUpdata(uniTreeMotorSendConfig_t *pData){
-	unitreeLoadPack(pData);
+uint8_t *headCheck = (uint8_t *)&motorRevConfig->motorRevpack;
+void unitreeMotorSendUpdata(uniTreeMotorSendConfig_t *send_config){
+	unitreeLoadPack(send_config);
 	SET_485_DE_UP();
-	HAL_UART_Transmit(&huart3, (uint8_t *)pData, sizeof(pData->motorSendpack), 10);
+	HAL_UART_Transmit_DMA(&huart3, (uint8_t *)send_config, sizeof(send_config->motorSendpack));
 	SET_485_DE_DOWN();
 }
-
-
-
-void unitreeMotorRevUpdata(uniTreeMotorRevConfig_t *rData){
-//	uint16_t rxlen = 0;
-//  HAL_UARTEx_ReceiveToIdle(&huart3, (uint8_t *)rData, sizeof(rData->motorRevpack), &rxlen, 10);
-//  if(rxlen == 0) 
-//		sysLog("MotorRevTimeout", "ERROR");
-//  if(rxlen != sizeof(rData->motorRevpack))
-//		sysLog("MotorRevLenError", "ERROR");
-	uint8_t *revPack = (uint8_t *)&motorRevConfig.motorRevpack;
-	HAL_UART_Receive_DMA(&huart3, (uint8_t *)rData, sizeof(rData->motorRevpack));
-	if(revPack[0] == 0xFD && revPack[1] == 0xEE){
-			rData->correct = 1;
-			unitreeReceivePack(rData);
+void unitreeMotorRevUpdata(uniTreeMotorRevConfig_t *rev_config){
+//	uint8_t *headCheck = (uint8_t *)&rev_config->motorRevpack;
+	HAL_UART_Receive_DMA(&huart3, (uint8_t *)rev_config, sizeof(rev_config->motorRevpack));
+	if(headCheck[0] == 0xFD && headCheck[1] == 0xEE){
+			unitreeReceivePack(rev_config);
 	}
 }
+
+void unitreeTask(){
+
+		unitreeMotorSendUpdata(&motorSendConfig[0]);
+		unitreeMotorRevUpdata(&motorRevConfig[0]);
+		DWT_Delay(0.0002f);
+		unitreeMotorSendUpdata(&motorSendConfig[1]);
+		unitreeMotorRevUpdata(&motorRevConfig[1]);
+//		DWT_Delay(0.0002f);
+}
+
+
 

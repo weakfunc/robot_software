@@ -28,7 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "DRIVER_DWT.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -104,7 +104,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+	DWT_Init(480);
   /* USER CODE END 2 */
 
   /* Init scheduler */
