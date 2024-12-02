@@ -3,6 +3,7 @@
 ".\main.o"
 ".\gpio.o"
 ".\freertos.o"
+".\dma.o"
 ".\memorymap.o"
 ".\spi.o"
 ".\tim.o"
@@ -51,7 +52,7 @@
 ".\supervision.o"
 ".\system.o"
 ".\motor.o"
---strict --scatter ".\robot.sct"
+--library_type=microlib --strict --scatter ".\robot.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "robot.map" -o .\robot.axf

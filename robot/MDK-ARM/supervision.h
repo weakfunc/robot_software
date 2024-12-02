@@ -8,7 +8,10 @@ typedef struct{
 	TickType_t taskTime;
 }supervisionTaskConfig_t;
 
-void supervisionUpdataTask(void);
+#define LOG_USART huart1
 
+void supervisionDriverInit(void);
+void supervisionUpdataTask(void);
+void sysLog(const char str[], const char state[]);
 
 #endif

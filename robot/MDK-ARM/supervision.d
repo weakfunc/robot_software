@@ -51,3 +51,5 @@
 .\supervision.o: DRIVER_WS2812.h
 .\supervision.o: DRIVER_BEEP.h
 .\supervision.o: ../Core/Inc/tim.h
+.\supervision.o: ../Core/Inc/usart.h
+.\supervision.o: D:\App_master\KEIL5\ARM\ARMCC\Bin\..\include\stdio.h

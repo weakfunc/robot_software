@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "dma.h"
 #include "memorymap.h"
 #include "spi.h"
 #include "tim.h"
@@ -96,6 +97,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_SPI6_Init();
   MX_TIM12_Init();
   MX_USART3_UART_Init();

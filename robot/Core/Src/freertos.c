@@ -158,8 +158,7 @@ void StartDefaultTask(void *argument)
 void supervisionTask(void *argument)
 {
   /* USER CODE BEGIN supervisionTask */
-	ws2812Init();
-	beepInit();
+	supervisionDriverInit();
   /* Infinite loop */
   for(;;)
   {
@@ -179,12 +178,13 @@ void supervisionTask(void *argument)
 void motorTransTask(void *argument)
 {
   /* USER CODE BEGIN motorTransTask */
-	motorSendTest();
+	motorSendTest(&motorSendConfig);
+	motorSendTest(&test);
   /* Infinite loop */
   for(;;)
   {
 		motorUpdataTask();
-    osDelay(1000);
+    osDelay(5);
   }
   /* USER CODE END motorTransTask */
 }

@@ -59,52 +59,57 @@ typedef struct{
 #pragma pack()
 
 //发送数据配置结构体
+//实际给FOC的指令力矩为：
+// K_P*delta_Pos + K_W*delta_W + T
 typedef struct{
-    motorSendPack_t motorSendpack;   //电机控制数据结构体
-    int hexLen;                        //发送的16进制命令数组长度, 34
-    long long sendTime;                //发送该命令的时间, 微秒(us)
-    // 待发送的各项数据
+    motorSendPack_t motorSendpack;      //电机控制数据结构体
+    int hexLen;                         //发送的16进制命令数组长度, 34
+    long long sendTime;                 //发送该命令的时间, 微秒(us)
     unsigned short id;                  //电机ID，0代表全部电机
     unsigned short mode;                // 0:空闲, 5:开环转动, 10:闭环FOC控制
-    //实际给FOC的指令力矩为：
-    // K_P*delta_Pos + K_W*delta_W + T
     float t;                            //期望关节的输出力矩（电机本身的力矩）（Nm）
     float w;                            //期望关节速度（电机本身的速度）(rad/s)
     float pos;                          //期望关节位置（rad）
     float kp;                           //关节刚度系数
-    float kw;                          //关节速度系数
+    float kw;                           //关节速度系数
     COMData32 res;                    	//通讯，保留字节，用于实现别的一些通讯内容
-} motorSendConfig_t;
+} uniTreeMotorSendConfig_t;
 
 //接收数据配置结构体
 typedef struct{
-    motorRevPack_t motor_recv_data;     //电机接收数据结构体
-    int hex_len;                        //接收的16进制命令数组长度, 78
-    long long resv_time;                //接收该命令的时间, 微秒(us)
+    motorRevPack_t motorRevpack;        //电机接收数据结构体
+    int hexLen;                         //接收的16进制命令数组长度, 78
+    long long resvTime;                 //接收该命令的时间, 微秒(us)
     int correct;                        //接收数据是否完整（1完整，0不完整）
-    //解读得出的电机数据
-    unsigned char motor_id;             //电机ID
+    unsigned char motorId;              //电机ID
     unsigned char mode;                 //0:空闲, 5:开环转动, 10:闭环FOC控制
-    int Temp;                           //温度
-    unsigned char MError;               //错误码
-    float T;                            //当前实际电机输出力矩
-		float W;														//speed
-    float Pos;                          //当前电机位置（主控0点修正，电机关节还是以编码器0点为准）
+    int temp;                           //温度
+    unsigned char errorCode;            //错误码
+    float t;                            //当前实际电机输出力矩
+		float w;														//speed
+    float pos;                          //当前电机位置（主控0点修正，电机关节还是以编码器0点为准）
 		float footForce;										//足端气压传感器数据 12bit (0-4095)
-} motorRevConfig_t;
+} uniTreeMotorRevConfig_t;
+
+typedef struct{
+	TickType_t startTime;
+	TickType_t duringTime;
+}driverMotorConfig_t;
 
 
 #define LIMIT(IN, MIN, MAX) IN=(IN>MAX)?MAX:((IN<MIN)?MIN:IN)
 #define SET_485_DE_UP() HAL_GPIO_WritePin(RS485_DE_GPIO_Port, RS485_DE_Pin, GPIO_PIN_SET)
 #define SET_485_DE_DOWN() HAL_GPIO_WritePin(RS485_DE_GPIO_Port, RS485_DE_Pin, GPIO_PIN_RESET)
-#define SET_485_RE_UP() HAL_GPIO_WritePin(RS485_RE_GPIO_Port, RS485_RE_Pin, GPIO_PIN_SET)
-#define SET_485_RE_DOWN() HAL_GPIO_WritePin(RS485_RE_GPIO_Port, RS485_RE_Pin, GPIO_PIN_RESET)
 
 
-extern motorSendConfig_t motorSendConfig;   
-extern motorRevConfig_t motorRevConfig;
-void motorSendTest(void);
-static void loadSendPack(motorSendConfig_t *pData);
-void motorSendUpdata(motorSendConfig_t *pData);
+extern uniTreeMotorSendConfig_t motorSendConfig;   
+extern uniTreeMotorRevConfig_t motorRevConfig;
+extern uniTreeMotorSendConfig_t test;
+
+void motorSendTest(uniTreeMotorSendConfig_t *data);
+static void unitreeLoadPack(uniTreeMotorSendConfig_t *pData);
+static void unitreeReceivePack(uniTreeMotorRevConfig_t *pData);
+void unitreeMotorSendUpdata(uniTreeMotorSendConfig_t *pData);
+void unitreeMotorRevUpdata(uniTreeMotorRevConfig_t *rData);
 
 #endif

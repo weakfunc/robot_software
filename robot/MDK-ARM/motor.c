@@ -3,5 +3,7 @@
 motorTaskConfig_t motorTaskConfig;
 
 void motorUpdataTask(){
-	motorSendUpdata(&motorSendConfig);
+	unitreeMotorSendUpdata(&motorSendConfig);
+	unitreeMotorRevUpdata(&motorRevConfig);
+	//unitreeMotorSendUpdata(&test);
 }

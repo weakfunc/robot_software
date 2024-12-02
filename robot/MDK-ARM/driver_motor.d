@@ -50,3 +50,8 @@
 .\driver_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 .\driver_motor.o: DRIVER_CRC.h
 .\driver_motor.o: ../Core/Inc/usart.h
+.\driver_motor.o: SUPERVISION.h
+.\driver_motor.o: DRIVER_WS2812.h
+.\driver_motor.o: DRIVER_BEEP.h
+.\driver_motor.o: ../Core/Inc/tim.h
+.\driver_motor.o: ../Core/Inc/dma.h

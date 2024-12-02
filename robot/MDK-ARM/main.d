@@ -49,6 +49,7 @@
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
+.\main.o: ../Core/Inc/dma.h
 .\main.o: ../Core/Inc/memorymap.h
 .\main.o: ../Core/Inc/spi.h
 .\main.o: ../Core/Inc/tim.h
