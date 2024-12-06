@@ -9,6 +9,7 @@ typedef struct{
 }motorTaskConfig_t;
 
 void motorUpdataTask(void);
+void motorDriverInit(void);
 
 #endif
 

@@ -25,6 +25,7 @@
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h
+.\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_fdcan.h
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h
 .\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h
@@ -50,9 +51,12 @@
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 .\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 .\main.o: ../Core/Inc/dma.h
+.\main.o: ../Core/Inc/fdcan.h
 .\main.o: ../Core/Inc/memorymap.h
 .\main.o: ../Core/Inc/spi.h
 .\main.o: ../Core/Inc/tim.h
 .\main.o: ../Core/Inc/usart.h
 .\main.o: ../Core/Inc/gpio.h
 .\main.o: ../MDK-ARM/DRIVER_DWT.h
+.\main.o: ../MDK-ARM/DRIVER_MOTOR.h
+.\main.o: ../MDK-ARM/DRIVER_FDCAN.h

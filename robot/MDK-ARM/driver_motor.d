@@ -26,6 +26,7 @@
 .\driver_motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h
 .\driver_motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h
 .\driver_motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h
+.\driver_motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_fdcan.h
 .\driver_motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h
 .\driver_motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h
 .\driver_motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h
@@ -48,6 +49,8 @@
 .\driver_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
 .\driver_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 .\driver_motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+.\driver_motor.o: ../Core/Inc/fdcan.h
+.\driver_motor.o: DRIVER_FDCAN.h
 .\driver_motor.o: DRIVER_CRC.h
 .\driver_motor.o: ../Core/Inc/usart.h
 .\driver_motor.o: SUPERVISION.h

@@ -26,6 +26,7 @@
 .\motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h
 .\motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h
 .\motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h
+.\motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_fdcan.h
 .\motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h
 .\motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h
 .\motor.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h
@@ -49,3 +50,9 @@
 .\motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 .\motor.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 .\motor.o: Driver_Motor.h
+.\motor.o: ../Core/Inc/fdcan.h
+.\motor.o: DRIVER_FDCAN.h
+.\motor.o: SUPERVISION.h
+.\motor.o: DRIVER_WS2812.h
+.\motor.o: DRIVER_BEEP.h
+.\motor.o: ../Core/Inc/tim.h

@@ -1,7 +1,8 @@
 #ifndef __DRIVER_MOTOR_H__
 #define __DRIVER_MOTOR_H__
 #include "main.h" 
-
+#include "fdcan.h"
+#include "DRIVER_FDCAN.h"
 
 #pragma pack(1)
 typedef union{
@@ -73,7 +74,7 @@ typedef struct{
 	float kp;                           //关节刚度系数
 	float kw;                           //关节速度系数
 	COMData32 res;                    	//通讯，保留字节，用于实现别的一些通讯内容	
-} uniTreeMotorSendConfig_t;
+} unitreeMotorSendConfig_t;
 
 //接收数据配置结构体
 typedef struct{
@@ -89,29 +90,88 @@ typedef struct{
 		int correct;                        //接收数据是否完整（1完整，0不完整）
 		int temp;                           //温度
 		unsigned char errorCode;            //错误码
-} uniTreeMotorRevConfig_t;
+} unitreeMotorRevConfig_t;
 
 typedef struct{
 	TickType_t startTime;
 	TickType_t duringTime;
 }driverMotorConfig_t;
 
+typedef enum{
+  Motor_Enable,
+  Motor_Disable,
+  Motor_Save_Zero_Position,
+  DM_Motor_CMD_Type_Num,
+}DM_Motor_CMD_e;
+
+typedef enum{
+  MIT_Mode,
+  Position_Velocity_Mode,
+  Velocity_Mode,
+  DM_Motor_Mode_Type_Num,
+}DM_Motor_Mode_e;
+
+typedef struct {
+  int16_t  State; 	
+  uint16_t  P_int;
+  uint16_t  V_int;
+  uint16_t  T_int;
+  float  Position;  
+  float  Velocity;  
+  float  Torque;  
+  float  Temperature_MOS;   
+  float  Temperature_Rotor;  
+}DM_Motor_Data_Typedef;
+
+typedef struct{
+  uint32_t Master_ID;   
+  uint32_t CAN_ID;  
+}Motor_CANFrameInfo_typedef;
+
+typedef struct{
+	uint16_t ID;
+  Motor_CANFrameInfo_typedef CANFrameInfo;
+	DM_Motor_Data_Typedef Data;  
+}DM_Motor_Info_Typedef;
+
+
+typedef struct{
+	float  KP;
+	float  KD;
+	float  Position; 
+  float  Velocity;  	
+  float  Torque;  
+}DM_Motor_Control_Typedef;
 
 #define LIMIT(IN, MIN, MAX) IN=(IN>MAX)?MAX:((IN<MIN)?MIN:IN)
 #define SET_485_DE_UP() HAL_GPIO_WritePin(RS485_DE_GPIO_Port, RS485_DE_Pin, GPIO_PIN_SET)
 #define SET_485_DE_DOWN() HAL_GPIO_WritePin(RS485_DE_GPIO_Port, RS485_DE_Pin, GPIO_PIN_RESET)
 #define UNITREE_MOTOR_NUM 2
+#define DM_P_MAX 12.5f
+#define DM_V_MAX 45.f
+#define DM_T_MAX 10.f
 
-extern uniTreeMotorSendConfig_t motorSendConfig[UNITREE_MOTOR_NUM];   
-extern uniTreeMotorRevConfig_t motorRevConfig[UNITREE_MOTOR_NUM];
-extern uniTreeMotorSendConfig_t test;
+extern unitreeMotorSendConfig_t motorSendConfig[UNITREE_MOTOR_NUM];   
+extern unitreeMotorRevConfig_t motorRevConfig[UNITREE_MOTOR_NUM];
+extern unitreeMotorSendConfig_t test;
 
-void motorSendTest(void);
-static void unitreeLoadPack(uniTreeMotorSendConfig_t *pData);
-static void unitreeReceivePack(uniTreeMotorRevConfig_t *pData);
-void unitreeMotorSendUpdata(uniTreeMotorSendConfig_t *pData);
-void unitreeMotorRevUpdata(uniTreeMotorRevConfig_t *rData);
+void unitreeMotorInit(void);
+static void unitreeLoadPack(unitreeMotorSendConfig_t *pData);
+static void unitreeReceivePack(unitreeMotorRevConfig_t *pData);
+void unitreeMotorSendUpdata(unitreeMotorSendConfig_t *pData);
+void unitreeMotorRevUpdata(unitreeMotorRevConfig_t *rData);
+void unitreeMotorTask(void);
 
-void unitreeTask(void);
+extern DM_Motor_Info_Typedef DM_6220_Motor;
 
+extern DM_Motor_Control_Typedef DM_Motor_Control;
+
+extern void DM_Motor_Info_Update(uint8_t *rxBuf,DM_Motor_Info_Typedef *DM_Motor);
+
+extern void DM_Motor_Multi_Info_Update(uint8_t *Data,DM_Motor_Info_Typedef *DM_Motor);
+
+extern void DM_Motor_Command(FDCAN_TxFrame_TypeDef *TxFrame,uint16_t TxStdId,uint8_t CMD);
+
+extern void DM_Motor_CAN_TxMessage(FDCAN_TxFrame_TypeDef *TxFrame,DM_Motor_Info_Typedef *DM_Motor,uint8_t Mode,
+	                                             float Postion, float Velocity, float KP, float KD, float Torque);
 #endif

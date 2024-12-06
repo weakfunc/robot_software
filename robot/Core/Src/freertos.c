@@ -178,7 +178,8 @@ void supervisionTask(void *argument)
 void motorTransTask(void *argument)
 {
   /* USER CODE BEGIN motorTransTask */
-	motorSendTest();
+	
+	motorDriverInit();
   /* Infinite loop */
   for(;;)
   {

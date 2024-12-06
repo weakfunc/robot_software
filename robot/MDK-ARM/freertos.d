@@ -34,6 +34,7 @@
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h
+.\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_fdcan.h
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h
 .\freertos.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h
@@ -55,3 +56,5 @@
 .\freertos.o: ../Core/Inc/tim.h
 .\freertos.o: ../MDK-ARM/MOTOR.h
 .\freertos.o: ../MDK-ARM/Driver_Motor.h
+.\freertos.o: ../Core/Inc/fdcan.h
+.\freertos.o: ../MDK-ARM/DRIVER_FDCAN.h
