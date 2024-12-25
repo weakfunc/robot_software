@@ -105,11 +105,7 @@ int main(void)
   MX_FDCAN1_Init();
   /* USER CODE BEGIN 2 */
 	DWT_Init(480);
-	DWT_Delay(0.1);
   BSP_FDCAN_Init();
-	DWT_Delay(1);
-	DM_Motor_Command(&FDCAN1TxFrame,0x01,Motor_Enable);
-	DWT_Delay(0.1);
   /* USER CODE END 2 */
 
   /* Init scheduler */

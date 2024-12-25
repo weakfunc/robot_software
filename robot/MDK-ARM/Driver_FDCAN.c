@@ -38,9 +38,9 @@ void BSP_FDCAN_Init(void){
 	
 }
 
-
 static void FDCAN1_RxFifo0RxHandler(uint32_t *Master_ID,uint8_t Data[8]){
-  DM_Motor_Info_Update(Data,&DM_6220_Motor);
+  dmMotorRevUpdata(Data,&dmMotorRevConfig[0]);
+	dmMotorRevUpdata(Data,&dmMotorRevConfig[1]);
 }
 
 
