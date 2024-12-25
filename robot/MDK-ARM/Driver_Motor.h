@@ -77,7 +77,7 @@ typedef struct{
 
 //接收数据配置结构体
 typedef struct{
-    unitreeMotorRevPack_t motorRevpack;        //电机接收数据结构体
+//    unitreeMotorRevPack_t motorRevpack;        //电机接收数据结构体
 		unsigned char id;              			//电机ID
     int hexLen;                         //接收的16进制命令数组长度, 78
     long long resvTime;                 //接收该命令的时间, 微秒(us)
@@ -99,17 +99,17 @@ typedef struct{
 }driverMotorConfig_t;
 
 typedef enum{
-  Motor_Enable,
-  Motor_Disable,
-  Motor_Save_Zero_Position,
-  DM_Motor_CMD_Type_Num,
+  enable,
+  disable,
+  save_zero_pos,
+  cmd_num,
 }dmMotorCMD;
 
 typedef enum{
   mit_mode,
   pos_vel_mode,
   vel_mode,
-  num,
+  mode_num,
 }dmMotorMode;
 
 typedef struct {
@@ -154,7 +154,6 @@ typedef struct{
 
 extern unitreeMotorSendConfig_t unitreeMotorSendConfig[UNITREE_MOTOR_NUM];   
 extern unitreeMotorRevConfig_t unitreeMotorRevConfig[UNITREE_MOTOR_NUM];
-extern unitreeMotorSendConfig_t test;
 
 void unitreeMotorInit(void);
 static void unitreeLoadPack(unitreeMotorSendConfig_t *pData);

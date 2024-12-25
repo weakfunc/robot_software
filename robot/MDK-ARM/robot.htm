@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\robot.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\robot.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Dec 25 10:52:50 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Dec 25 14:55:00 2024
 <BR><P>
 <H3>Maximum Stack Usage =        376 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1727,7 +1727,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;musicUpdata
 </UL>
 
-<P><STRONG><a name="[145]"></a>dmMotorInit</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, driver_motor.o(i.dmMotorInit))
+<P><STRONG><a name="[145]"></a>dmMotorInit</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, driver_motor.o(i.dmMotorInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = dmMotorInit &rArr; dmMotorSendCMD &rArr; HAL_FDCAN_AddMessageToTxFifoQ &rArr; FDCAN_CopyMessageToRAM
 </UL>
 <BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Delay
@@ -1929,7 +1929,7 @@ Global Symbols
 <LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;unitreeMotorRevUpdata
 </UL>
 
-<P><STRONG><a name="[14f]"></a>unitreeMotorInit</STRONG> (Thumb, 100 bytes, Stack size 0 bytes, driver_motor.o(i.unitreeMotorInit))
+<P><STRONG><a name="[14f]"></a>unitreeMotorInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, driver_motor.o(i.unitreeMotorInit))
 <BR><BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motorDriverInit
 </UL>
 
@@ -2791,7 +2791,7 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmMotorRevUpdata
 </UL>
 
-<P><STRONG><a name="[18d]"></a>unitreeMotorRevUpdata</STRONG> (Thumb, 280 bytes, Stack size 16 bytes, driver_motor.o(i.unitreeMotorRevUpdata))
+<P><STRONG><a name="[18d]"></a>unitreeMotorRevUpdata</STRONG> (Thumb, 276 bytes, Stack size 16 bytes, driver_motor.o(i.unitreeMotorRevUpdata))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = unitreeMotorRevUpdata &rArr; HAL_UART_Receive_DMA &rArr; UART_Start_Receive_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_DMA

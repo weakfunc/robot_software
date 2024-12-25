@@ -12,9 +12,4 @@ void motorDriverInit(){
 void motorUpdataTask(){
 	unitreeMotorTask();
 	dmMotorTask();
-
-    /* USER CODE END WHILE */
-//	unitreeMotorSendUpdata(&motorSendConfig[0]);
-//	unitreeMotorRevUpdata(&motorRevConfig[0]);
-	//unitreeMotorSendUpdata(&test);
 }
